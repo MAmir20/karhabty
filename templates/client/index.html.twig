@@ -3,41 +3,68 @@
 {% block title %}Client index{% endblock %}
 
 {% block body %}
-    <h1>Client index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Tel</th>
-                <th>Email</th>
-                <th>Adresse</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for client in clients %}
-            <tr>
-                <td>{{ client.id }}</td>
-                <td>{{ client.nom }}</td>
-                <td>{{ client.prenom }}</td>
-                <td>{{ client.tel }}</td>
-                <td>{{ client.email }}</td>
-                <td>{{ client.adresse }}</td>
-                <td>
-                    <a href="{{ path('client_show', {'id': client.id}) }}">show</a>
-                    <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<div class="mt-4"><br></div>
+<div class="card mb-4 mt-5">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Liste des clients
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Tel</th>
+                    <th>Email</th>
+                    <th>Adresse</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            {# <tfoot>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Tel</th>
+                    <th>Email</th>
+                    <th>Adresse</th>
+                    <th>actions</th>
+                </tr>
+            </tfoot> #}
+            <tbody>
+                {% for client in clients %}
+                    <tr>
+                        <td>{{ client.id }}</td>
+                        <td>{{ client.nom }}</td>
+                        <td>{{ client.prenom }}</td>
+                        <td>{{ client.tel }}</td>
+                        <td>{{ client.email }}</td>
+                        <td>{{ client.adresse }}</td>
+                        <td>
+                            <a href="{{ path('client_show', {'id': client.id}) }}">show</a>
+                            <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">no records found</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 
     <a href="{{ path('client_new') }}">Create new</a>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#datatablesSimple').DataTable();
+    } );
+    </script>
+    <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 {% endblock %}

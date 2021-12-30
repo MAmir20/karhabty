@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Client{% endblock %}
+{% block title %}{{ client.prenom }} {{ client.nom }}{% endblock %}
 
 {% block body %}
-    <h1>Client</h1>
+    <div class="mt-5"><br></div>
+    <div class="mt-2"><br></div>
+    <h1>{{ client.prenom }} {{ client.nom }}</h1>
 
     <table class="table">
         <tbody>

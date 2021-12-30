@@ -3,7 +3,9 @@
 {% block title %}Edit Client{% endblock %}
 
 {% block body %}
-    <h1>Edit Client</h1>
+    <div class="mt-5"><br></div>
+    <div class="mt-2"><br></div>
+    <h1>Edit Client "{{ client.prenom }} {{ client.nom }}"</h1>
 
     {{ include('client/_form.html.twig', {'button_label': 'Update'}) }}
 

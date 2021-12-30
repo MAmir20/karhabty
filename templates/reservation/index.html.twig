@@ -3,37 +3,65 @@
 {% block title %}Reservation index{% endblock %}
 
 {% block body %}
-    <h1>Reservation index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>DateDeb</th>
-                <th>DateFin</th>
-                <th>PrixJ</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for reservation in reservations %}
-            <tr>
-                <td>{{ reservation.id }}</td>
-                <td>{{ reservation.dateDeb ? reservation.dateDeb|date('Y-m-d') : '' }}</td>
-                <td>{{ reservation.dateFin ? reservation.dateFin|date('Y-m-d') : '' }}</td>
-                <td>{{ reservation.prixJ }}</td>
-                <td>
-                    <a href="{{ path('reservation_show', {'id': reservation.id}) }}">show</a>
-                    <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="mt-4"><br></div>
+    <div class="card mb-4 mt-5">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Liste des réservations
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>DateDeb</th>
+                        <th>DateFin</th>
+                        <th>PrixJ</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                {# <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Tel</th>
+                        <th>Email</th>
+                        <th>Adresse</th>
+                        <th>actions</th>
+                    </tr>
+                </tfoot> #}
+                <tbody>
+                    {% for reservation in reservations %}
+                        <tr>
+                            <td>{{ reservation.id }}</td>
+                            <td>{{ reservation.dateDeb ? reservation.dateDeb|date('d-m-Y') : '' }}</td>
+                            <td>{{ reservation.dateFin ? reservation.dateFin|date('d-m-Y') : '' }}</td>
+                            <td>{{ reservation.prixJ }}</td>
+                            <td>
+                                <a href="{{ path('reservation_show', {'id': reservation.id}) }}">show</a>
+                                <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5">no records found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <a href="{{ path('reservation_new') }}">Create new</a>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#datatablesSimple').DataTable();
+    } );
+    </script>
+    <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    
 {% endblock %}

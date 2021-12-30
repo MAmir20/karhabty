@@ -3,7 +3,9 @@
 {% block title %}Edit Reservation{% endblock %}
 
 {% block body %}
-    <h1>Edit Reservation</h1>
+    <div class="mt-5"><br></div>
+    <div class="mt-2"><br></div>
+    <h1>Edit Reservation "{{reservation.id}}"</h1>
 
     {{ include('reservation/_form.html.twig', {'button_label': 'Update'}) }}
 

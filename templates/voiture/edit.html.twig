@@ -3,7 +3,9 @@
 {% block title %}Edit Voiture{% endblock %}
 
 {% block body %}
-    <h1>Edit Voiture</h1>
+    <div class="mt-5"><br></div>
+    <div class="mt-2"><br></div>
+    <h1>Edit Voiture {{voiture.nom}}</h1>
 
     {{ include('voiture/_form.html.twig', {'button_label': 'Update'}) }}
 

@@ -51,10 +51,11 @@ class VoitureController extends AbstractController
     /**
      * @Route("/{id}", name="voiture_show", methods={"GET"})
      */
-    public function show(Voiture $voiture): Response
+    public function show(Voiture $voiture, VoitureRepository $voitureRepository): Response
     {
         return $this->render('voiture/show.html.twig', [
             'voiture' => $voiture,
+            'voitures' => $voitureRepository->findByModeleOtherCars($voiture)
         ]);
     }
 

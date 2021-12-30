@@ -1,11 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Voiture index{% endblock %}
+{% block title %}Nos voitures{% endblock %}
 
 {% block body %}
-    <h1>Voiture index</h1>
+    <!-- Header-->
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">Nos voitures</h1>
+                <p class="lead fw-normal text-white-50 mb-0">Karhabty vous présente cette collecion de voitures</p>
+            </div>
+        </div>
+    </header>
+    <!-- Section-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                {% for voiture in voitures %}
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="{{voiture.photo ? voiture.photo : "https://dummyimage.com/450x300/dee2e6/6c757d.jpg"}}" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">{{voiture.nom}}</h5>
+                                <!-- Product price-->
+                                {{voiture.prix}}/Jour
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ path('voiture_show', {'id': voiture.id}) }}">Plus de détails</a></div>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                    <h2>no records found</h2>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
 
-    <table class="table">
+    {# <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -43,7 +81,7 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+    </table> #}
 
     <a href="{{ path('voiture_new') }}">Create new</a>
 {% endblock %}
