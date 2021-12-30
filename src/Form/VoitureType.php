@@ -21,7 +21,7 @@ class VoitureType extends AbstractType
             ->add('nom', TextType::class, ['label' => 'Nom : ', 'required' => True])
             ->add('matricule', TextType::class, ['label' => 'Matricule : ', 'required' => True])
             ->add('description', TextareaType::class, ['label' => 'Description : ', 'required' => True])
-            ->add('photo', FileType::class, ['label' => 'Photo : ', 'required' => False])
+            ->add('photo', FileType::class, ['data_class' => null, 'label' => 'Photo : ', 'required' => False])
             ->add('prix', NumberType::class, [
                 'label' => 'Prix : ', 
                 'required' => True, 
