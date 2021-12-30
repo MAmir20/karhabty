@@ -37,8 +37,11 @@ class ReservationController extends AbstractController
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
+            // $now = new \DateTime('now');
+            // if ($now > $reservation->getDateDeb() && $now < $reservation->getDateFin()){
+            //     $reservation->voiture->setDispo(false);
+            // }
             $entityManager->persist($reservation);
             $entityManager->flush();
 

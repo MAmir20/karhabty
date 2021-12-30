@@ -13,8 +13,7 @@
                 <th>Prenom</th>
                 <th>Tel</th>
                 <th>Email</th>
-                <th>Adresse</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -25,15 +24,14 @@
                 <td>{{ client.prenom }}</td>
                 <td>{{ client.tel }}</td>
                 <td>{{ client.email }}</td>
-                <td>{{ client.adresse }}</td>
                 <td>
-                    <a href="{{ path('client_show', {'id': client.id}) }}">show</a>
-                    <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
+                    <a href="{{ path('client_show', {'id': client.id}) }}"><button type = "button" class= "btn btn-primary"><i class="fa fa-eye"></i></button></a>
+                    <a href="{{ path('client_edit', {'id': client.id}) }}"><button type = "button" class= "btn btn-primary"><i class="fa fa-edit"></i></button></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="6">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

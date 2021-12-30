@@ -151,4 +151,8 @@ class Client
 
         return $this;
     }
+    public function __toString()
+    {
+        return (String)$this->getId();
+    }
 }

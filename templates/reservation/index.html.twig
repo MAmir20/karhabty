@@ -5,31 +5,35 @@
 {% block body %}
     <h1>Reservation index</h1>
 
-    <table class="table">
+    <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Voiture</th>
+                <th>Client</th>
                 <th>DateDeb</th>
                 <th>DateFin</th>
-                <th>PrixJ</th>
-                <th>actions</th>
+                <th>Prix Par Jour</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for reservation in reservations %}
             <tr>
                 <td>{{ reservation.id }}</td>
+                <td>{{ reservation.voiture.id ~ ". " ~ reservation.voiture.nom  }}</td>
+                <td>{{ reservation.client.id ~ ". " ~ reservation.client.nom ~ " " ~ reservation.client.prenom }}</td>
                 <td>{{ reservation.dateDeb ? reservation.dateDeb|date('Y-m-d') : '' }}</td>
                 <td>{{ reservation.dateFin ? reservation.dateFin|date('Y-m-d') : '' }}</td>
                 <td>{{ reservation.prixJ }}</td>
                 <td>
-                    <a href="{{ path('reservation_show', {'id': reservation.id}) }}">show</a>
-                    <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
+                    <a href="{{ path('reservation_show', {'id': reservation.id}) }}"><button type = "button" class= "btn btn-primary"><i class="fa fa-eye"></i></button></a>
+                    <a href="{{ path('reservation_edit', {'id': reservation.id}) }}"><button type = "button" class= "btn btn-primary"><i class="fa fa-edit"></i></button></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="7">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
